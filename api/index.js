@@ -24,7 +24,7 @@ app.post('/word', async (req, res) => {
 })
 
 // update a word
-app.put('word/:id', async (req, res) => {
+app.put('/word/:id', async (req, res) => {
 	const { id } = req.params
 	const { english, target, targetAlphabet, pictureFilepath, language } = req.body
 
@@ -48,7 +48,7 @@ app.put('word/:id', async (req, res) => {
 app.get('/word/:word', async (req, res) => {
 	const { word } = req.params
 
-	const wordResult = await prisma.word.findUnique({
+	const wordResult = await prisma.word.findFirst({
 		where: {
 			english: word
 		}
@@ -71,10 +71,10 @@ app.get('/words', async (req, res) => {
 })
 
 // delete a word
-app.delete('/word:id', async (req, res) => {
+app.delete('/word/:id', async (req, res) => {
 	const { id } = req.params
 
-	const wordResult = await prisma.post.delete({
+	const wordResult = await prisma.word.delete({
 		where: {
 			id
 		}
