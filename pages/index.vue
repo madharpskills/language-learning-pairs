@@ -1,16 +1,17 @@
 <template>
+<div class="bg-gradient-to-t from-indigo-800 to-indigo-200 ...">
   <div class="container">
     <div>
-      <Logo />
+      <!-- <Logo /> -->
       <h1 class="title">
-        language-learning-pairs
+        Language Learning Pairs
       </h1>
       <div class="links">
         <a
           href="https://nuxtjs.org/"
           target="_blank"
           rel="noopener noreferrer"
-          class="button--green"
+          class="button--white"
         >
           Documentation
         </a>
@@ -25,6 +26,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
