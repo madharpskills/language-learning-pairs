@@ -1,27 +1,39 @@
 <template>
   <ul class="deck" id="card-deck">
-    <li class="card"><Card /></li><li class="card"><Card /></li><li class="card"><Card /></li><li class="card"><Card /></li>
-    <li class="card"><Card /></li><li class="card"><Card /></li><li class="card"><Card /></li><li class="card"><Card /></li>
-    <li class="card"><Card /></li><li class="card"><Card /></li><li class="card"><Card /></li><li class="card"><Card /></li>
-    <li class="card"><Card /></li><li class="card"><Card /></li><li class="card"><Card /></li><li class="card"><Card /></li>
-    <li class="card"><Card /></li><li class="card"><Card /></li><li class="card"><Card /></li><li class="card"><Card /></li>
+    <li v-for="card in cards" @click="card.isFlipped = !card.isFlipped">
+      <div class="deck card" :class="{ 'flipped': card.isFlipped }">
+        {{card.english}}
+        {{card.isFlipped}}
+      </div>
+    </li>
   </ul>
 </template>
 
 <script>
+import _ from "lodash"
+
 export default {
     data () {
         return {
-            rows: [{}]
+            cards: []
         }
     },
-    computed: {
-        gameOptions () {
-            return this.$store.state.game
-        }
+    async asyncData({ $axios }) {
+        let cards = await $axios.$get(`http://localhost:3000/api/words?language=japanese`)
+        return { cards }
+    },
+    created () {
+        let cards1 = _.cloneDeep(this.cards)
+        this.cards = this.cards.concat(cards1)
+
+        this.cards.forEach((card) => {
+            card.isFlipped = false
+        })
     },
     methods: {
-        
+        flipCard(card) {
+            !card.isFlipped
+        }
     }
 }
 </script>
