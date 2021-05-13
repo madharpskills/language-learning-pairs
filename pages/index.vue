@@ -2,11 +2,9 @@
 <div class="bg-gradient-to-t from-indigo-800 to-indigo-200 ...">
   <div class="container">
     <div>
-      <!-- <Logo /> -->
       <h1 class="title">
         Language Learning Pairs
       </h1>
-      <!-- <Card /> -->
       <div>{{ gameOptions }}</div>
       <div class="menu">
         <a href="#" v-if="!newGame" @click="openGameMenu()" class="button--white">New Game</a>
@@ -30,7 +28,9 @@
           <button @click="setSize('20')" :class="{ 'button--white--clicked' : gameOptions.size == '20', 'button--white' : gameOptions.size != '20' }">20</button>
           </div>
           <div style="padding: 25px">
-            <NuxtLink to="game" @click="startGame()" class="button--white">Start Game</NuxtLink>
+            <NuxtLink v-if="gameOptions.size == '12'" to="game/12" @click="startGame()" class="button--white">Start Game</NuxtLink>
+            <NuxtLink v-if="gameOptions.size == '16'" to="game/16" @click="startGame()" class="button--white">Start Game</NuxtLink>
+            <NuxtLink v-if="gameOptions.size == '20'" to="game/20" @click="startGame()" class="button--white">Start Game</NuxtLink>
           </div>
         </div>
       </div>
@@ -46,9 +46,6 @@ export default {
     data () {
         return {
             newGame: false,
-            language: null,
-            mode: null,
-            size: null,
             gameReady: false
         }
     },
