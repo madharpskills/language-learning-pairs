@@ -11,6 +11,7 @@
 
 <script>
 import _ from "lodash"
+import Vue from "vue"
 
 export default {
     data () {
@@ -27,7 +28,7 @@ export default {
         this.cards = this.cards.concat(cards1)
 
         this.cards.forEach((card) => {
-            card.isFlipped = false
+            Vue.set(card, 'isFlipped', false)
         })
     },
     methods: {
