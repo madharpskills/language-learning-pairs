@@ -19,8 +19,8 @@ export default {
             cards: []
         }
     },
-    async asyncData({ $axios }) {
-        let cards = await $axios.$get(`http://localhost:3000/api/words?language=japanese`)
+    async asyncData({ store, $axios }) {
+        let cards = await $axios.$get(`http://localhost:3000/api/words?language=${store.state.game.language}`)
         return { cards }
     },
     created () {
