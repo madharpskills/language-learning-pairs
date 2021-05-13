@@ -9,6 +9,9 @@
       <Card />
 
     </div>
+    <div style="padding-top: 800px">
+      <a href="/" class="button--white">Home</a>
+    </div>
   </div>
 </div>
 </template>
