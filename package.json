@@ -7,7 +7,9 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "lint": "eslint --ext \".js\" --ignore-path .gitignore . --fix"
+    "lint": "eslint --ext \".js\" --ignore-path .gitignore . --fix",
+    "cypress:open": "cypress open",
+    "test": "cypress run"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.1",
