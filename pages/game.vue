@@ -6,11 +6,18 @@
       <h1 class="title">
         Language Learning Pairs
       </h1>
-      <Card />
+      <div>{{ gameOptions }}</div>
+      <div>
+        <table>
+          <tr>
+            <td><Card /></td><td><Card /></td><td><Card /></td><td><Card /></td>
+          </tr>
+        </table>
+      </div>
 
     </div>
     <div style="padding-top: 800px">
-      <a href="/" class="button--white">Home</a>
+      <NuxtLink to="/" class="button--white">Home</NuxtLink>
     </div>
   </div>
 </div>
@@ -20,7 +27,12 @@
 export default {
     data () {
         return {
-            
+            rows: [{}]
+        }
+    },
+    computed: {
+        gameOptions () {
+            return this.$store.state.game
         }
     },
     methods: {

@@ -7,29 +7,30 @@
         Language Learning Pairs
       </h1>
       <!-- <Card /> -->
+      <div>{{ gameOptions }}</div>
       <div class="menu">
         <a href="#" v-if="!newGame" @click="openGameMenu()" class="button--white">New Game</a>
         <div v-if="newGame" class="options">
-          <div>
+          <div id="mode">
           <h1 class="subtitle" style="color: #fff;padding: 15px">Mode</h1>
-          <button @click="mode='both'" :class="{ 'button--white--clicked' : mode == 'both', 'button--white' : mode != 'both' }">Words with pictures</button>
-          <button @click="mode='words'" :class="{ 'button--white--clicked' : mode == 'words', 'button--white' : mode != 'words' }">Words only</button>
-          <button @click="mode='pictures'" :class="{ 'button--white--clicked' : mode == 'pictures', 'button--white' : mode != 'pictures' }">Pictures only</button>
+          <button @click="setMode('both')" :class="{ 'button--white--clicked' : gameOptions.mode == 'both', 'button--white' : gameOptions.mode != 'both' }">Words with pictures</button>
+          <button @click="setMode('words')" :class="{ 'button--white--clicked' : gameOptions.mode == 'words', 'button--white' : gameOptions.mode != 'words' }">Words only</button>
+          <button @click="setMode('pictures')" :class="{ 'button--white--clicked' : gameOptions.mode == 'pictures', 'button--white' : gameOptions.mode != 'pictures' }">Pictures only</button>
           </div>
 
-          <div>
+          <div id="language">
           <h1 class="subtitle" style="color: #fff;padding: 15px">Language</h1>
-          <button @click="language='japanese'" :class="{ 'button--white--clicked' : language == 'japanese', 'button--white' : language != 'japanese' }">Japanese</button>
+          <button @click="setLanguage('japanese')" :class="{ 'button--white--clicked' : gameOptions.language == 'japanese', 'button--white' : gameOptions.language != 'japanese' }">Japanese</button>
           </div>
 
-          <div>
+          <div id="size">
           <h1 class="subtitle" style="color: #fff;padding: 15px">Size</h1>
-          <button @click="size='12'" :class="{ 'button--white--clicked' : size == '12', 'button--white' : size != '12' }">12</button>
-          <button @click="size='16'" :class="{ 'button--white--clicked' : size == '16', 'button--white' : size != '16' }">16</button>
-          <button @click="size='20'" :class="{ 'button--white--clicked' : size == '20', 'button--white' : size != '20' }">20</button>
+          <button @click="setSize('12')" :class="{ 'button--white--clicked' : gameOptions.size == '12', 'button--white' : gameOptions.size != '12' }">12</button>
+          <button @click="setSize('16')" :class="{ 'button--white--clicked' : gameOptions.size == '16', 'button--white' : gameOptions.size != '16' }">16</button>
+          <button @click="setSize('20')" :class="{ 'button--white--clicked' : gameOptions.size == '20', 'button--white' : gameOptions.size != '20' }">20</button>
           </div>
           <div style="padding: 25px">
-            <a href="game" @click="startGame()" class="button--white">Start Game</a>
+            <NuxtLink to="game" @click="startGame()" class="button--white">Start Game</NuxtLink>
           </div>
         </div>
       </div>
@@ -39,6 +40,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
     data () {
         return {
@@ -49,13 +52,23 @@ export default {
             gameReady: false
         }
     },
+    computed: {
+        gameOptions () {
+            return this.$store.state.game
+        }
+    },
     methods: {
         openGameMenu () {
             this.newGame = true
         },
         startGame(mode, language, size) {
             
-        }
+        },
+        ...mapMutations({
+            setMode: 'game/setMode',
+            setLanguage: 'game/setLanguage',
+            setSize: 'game/setSize'
+        })
     }
 }
 </script>
