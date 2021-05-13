@@ -12,7 +12,8 @@
         <div v-if="newGame" class="options">
           <div>
           <h1 class="subtitle" style="color: #fff;padding: 15px">Mode</h1>
-          <button @click="mode='words'" :class="{ 'button--white--clicked' : mode == 'words', 'button--white' : mode != 'words' }">Words with pictures</button>
+          <button @click="mode='both'" :class="{ 'button--white--clicked' : mode == 'both', 'button--white' : mode != 'both' }">Words with pictures</button>
+          <button @click="mode='words'" :class="{ 'button--white--clicked' : mode == 'words', 'button--white' : mode != 'words' }">Words only</button>
           <button @click="mode='pictures'" :class="{ 'button--white--clicked' : mode == 'pictures', 'button--white' : mode != 'pictures' }">Pictures only</button>
           </div>
 
