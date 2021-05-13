@@ -45,6 +45,16 @@ html {
   background-color: #fff;
 }
 
+.button--white--clicked {
+  background-color: #fff;
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #ffffff;
+  color: #35495e;
+  text-decoration: none;
+  padding: 10px 30px;
+}
+
 .button--grey {
   display: inline-block;
   border-radius: 4px;
