@@ -32,8 +32,7 @@ export default {
             Vue.set(card, 'isFlipped', false)
         })
 
-        let cards1 = _.cloneDeep(this.cards)
-        this.cards = this.cards.concat(cards1)
+        this.cards = _.shuffle(this.cards.concat(_.cloneDeep(this.cards)))
     },
     methods: {
         flipCard(card) {
