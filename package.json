@@ -16,7 +16,9 @@
     "@prisma/client": "^2.22.1",
     "core-js": "^3.9.1",
     "express": "^4.17.1",
-    "nuxt": "^2.15.3"
+    "lodash": "^4.17.21",
+    "nuxt": "^2.15.3",
+    "vue-lodash": "^2.1.2"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^6.0.0",

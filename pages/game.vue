@@ -114,11 +114,11 @@ export default {
   color: #35495e
 }
 
-.deck .card.selected:hover {
+.deck .card.flipped:hover {
   color: #35495e
 }
 
-.deck .card.selected {
+.deck .card.flipped {
   transform: rotateY(0);
   background: #02b3e4;
   cursor: default;
