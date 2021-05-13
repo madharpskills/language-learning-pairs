@@ -7,8 +7,8 @@
       </h1>
       <div>{{ gameOptions }}</div>
       <div class="menu">
-        <a href="#" v-if="!newGame" @click="openGameMenu()" class="button--white">New Game</a>
-        <div v-if="newGame" class="options">
+        <button v-if="!gameOptions.newGame" @click="openGameMenu()" class="button--white">New Game</button>
+        <div v-if="gameOptions.newGame" class="options">
           <div id="mode">
           <h1 class="subtitle" style="color: #fff;padding: 15px">Mode</h1>
           <button @click="setMode('both')" :class="{ 'button--white--clicked' : gameOptions.mode == 'both', 'button--white' : gameOptions.mode != 'both' }">Words with pictures</button>
@@ -45,7 +45,6 @@ import { mapMutations } from 'vuex'
 export default {
     data () {
         return {
-            newGame: false,
             gameReady: false
         }
     },
@@ -55,16 +54,14 @@ export default {
         }
     },
     methods: {
-        openGameMenu () {
-            this.newGame = true
-        },
         startGame(mode, language, size) {
             
         },
         ...mapMutations({
             setMode: 'game/setMode',
             setLanguage: 'game/setLanguage',
-            setSize: 'game/setSize'
+            setSize: 'game/setSize',
+            openGameMenu: 'game/openGameMenu'
         })
     }
 }
