@@ -3,7 +3,6 @@
     <li v-for="card in cards" @click="card.isFlipped = !card.isFlipped">
       <div class="deck card" :class="{ 'flipped': card.isFlipped }">
         {{card.english}}
-        {{card.isFlipped}}
       </div>
     </li>
   </ul>

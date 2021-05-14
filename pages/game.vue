@@ -99,8 +99,7 @@ export default {
   width: 10rem;
   margin: 5px 8px;
   /* background: #ffffff;; */
-  font-size: 10;
-  color: #ffffff;
+  color: transparent;
   border-radius: 5px;
   cursor: pointer;
   display: flex;
@@ -111,7 +110,7 @@ export default {
 
 .deck .card:hover {
   background-color: #fff;
-  color: #35495e
+  color: transparent
 }
 
 .deck .card.flipped:hover {
@@ -122,6 +121,7 @@ export default {
   transform: rotateY(0);
   background: #02b3e4;
   cursor: default;
+  color: #fff;
   animation-name: flipInY;
   -webkit-backface-visibility: visible !important;
   backface-visibility: visible !important;
