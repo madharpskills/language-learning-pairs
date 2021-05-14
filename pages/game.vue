@@ -87,7 +87,7 @@ export default {
         }
     },
     async asyncData({ store, $axios }) {
-        let words = await $axios.$get(`http://localhost:3000/api/words?language=${store.state.game.language}`)
+        let words = await $axios.$get(`/api/words?language=${store.state.game.language}`)
         return { words }
     },
     created () {
