@@ -15,7 +15,7 @@
           <button @click="setMode('pictures')" :class="{ 'button--white--clicked' : gameOptions.mode == 'pictures', 'button--white' : gameOptions.mode != 'pictures' }">Pictures only</button>
           </div>
 
-          <div id="language">
+          <div v-if="gameOptions.mode != 'pictures'" id="language">
           <h1 class="subtitle" style="color: #fff;padding: 15px">Language</h1>
           <button @click="setLanguage('japanese')" :class="{ 'button--white--clicked' : gameOptions.language == 'japanese', 'button--white' : gameOptions.language != 'japanese' }">Japanese</button>
           </div>
