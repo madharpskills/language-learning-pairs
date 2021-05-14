@@ -5,16 +5,47 @@
       <h1 class="title">
         Language Learning Pairs
       </h1>
-      <ul class="deck" id="card-deck">
-        <li v-for="card in cards" @click="flipCard(card)">
-          <div v-if="!card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
-            {{card.english}}
-          </div>
-          <div v-if="card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
-            {{card.target}}
-          </div>
-        </li>
-      </ul>
+
+      <div v-if="gameOptions.mode == 'words'">
+        <ul class="deck" id="card-deck">
+          <li v-for="card in cards" @click="flipCard(card)" v-bind:key="card">
+            <div v-if="!card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
+              {{card.english}}
+            </div>
+            <div v-if="card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
+              {{card.target}}
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div v-if="gameOptions.mode == 'words with pictures'">
+        <ul class="deck" id="card-deck">
+          <li v-for="card in cards" @click="flipCard(card)" v-bind:key="card">
+            <div v-if="!card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
+              {{card.english}}
+              <img src="~/assets/colors/red.jpg" />
+            </div>
+            <div v-if="card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
+              {{card.target}}
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div v-if="gameOptions.mode == 'pictures'">
+        <ul class="deck" id="card-deck">
+          <li v-for="card in cards" @click="flipCard(card)" v-bind:key="card">
+            <div v-if="!card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
+              {{card.english}}
+            </div>
+            <div v-if="card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
+              {{card.target}}
+            </div>
+          </li>
+        </ul>
+      </div>
+
     </div>
     <div style="padding-top: 800px; margin 20px">
       <button style="margin: 20px" v-if="gameFinished" class="button--white" @click="reset">Play again</button>

@@ -10,7 +10,7 @@
         <div v-if="gameOptions.newGame" class="options">
           <div id="mode">
           <h1 class="subtitle" style="color: #fff;padding: 15px">Mode</h1>
-          <button @click="setMode('both')" :class="{ 'button--white--clicked' : gameOptions.mode == 'both', 'button--white' : gameOptions.mode != 'both' }">Words with pictures</button>
+          <button @click="setMode('words with pictures')" :class="{ 'button--white--clicked' : gameOptions.mode == 'words with pictures', 'button--white' : gameOptions.mode != 'words with pictures' }">Words with pictures</button>
           <button @click="setMode('words')" :class="{ 'button--white--clicked' : gameOptions.mode == 'words', 'button--white' : gameOptions.mode != 'words' }">Words only</button>
           <button @click="setMode('pictures')" :class="{ 'button--white--clicked' : gameOptions.mode == 'pictures', 'button--white' : gameOptions.mode != 'pictures' }">Pictures only</button>
           </div>
@@ -42,7 +42,7 @@ import { mapMutations } from 'vuex'
 export default {
     data () {
         return {
-            gameReady: false
+
         }
     },
     computed: {
