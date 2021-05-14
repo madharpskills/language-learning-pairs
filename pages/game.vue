@@ -203,8 +203,8 @@ export default {
 }
 
 .picture {
-  max-width: 60px; 
-  max-height: 60px;
+  max-width: 100px; 
+  max-height: 100px;
   border-radius: 8px;
   border: 1px solid #000;
 }
@@ -250,7 +250,7 @@ export default {
 
 .deck .card.flipped {
   transform: rotateY(0);
-  background: #44428d;
+  background: #323068;
   cursor: default;
   color: #fff;
   animation-name: flipInY;
@@ -261,7 +261,7 @@ export default {
 
 .deck .card.matched {
   cursor: default;
-  background: #aeaed4;
+  background: #babaff;
   animation-name: rubberBand;
   -webkit-backface-visibility: visible !important;
   backface-visibility: visible !important;
@@ -276,6 +276,7 @@ export default {
 }
 
 /* animations */
+
 @keyframes flipInY {
   from {
   	transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
