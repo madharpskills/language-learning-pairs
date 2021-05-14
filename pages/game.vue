@@ -23,11 +23,20 @@
         <ul class="deck" id="card-deck">
           <li v-for="card in cards" @click="flipCard(card)" v-bind:key="card">
             <div v-if="!card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
-              {{card.english}}
-              <img src="~/assets/colors/red.jpg" />
+              <div v-if="card.isFlipped" style="position: relative;">
+                <img class="picture" :src="`${card.pictureFilepath}`" />
+              </div>
+              <div style="position: absolute; bottom: 0; padding: 10px">
+                {{card.english}}
+              </div>
             </div>
             <div v-if="card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
-              {{card.target}}
+              <div v-if="card.isFlipped" style="position: relative;">
+                <img class="picture" :src="`${card.pictureFilepath}`" />
+              </div>
+              <div style="position: absolute; bottom: 0; padding: 10px">
+                {{card.target}}
+              </div>
             </div>
           </li>
         </ul>
@@ -37,10 +46,14 @@
         <ul class="deck" id="card-deck">
           <li v-for="card in cards" @click="flipCard(card)" v-bind:key="card">
             <div v-if="!card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
-              {{card.english}}
+              <div v-if="card.isFlipped">
+                <img class="picture" :src="`${card.pictureFilepath}`" />
+              </div>
             </div>
             <div v-if="card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
-              {{card.target}}
+              <div v-if="card.isFlipped">
+                <img class="picture" :src="`${card.pictureFilepath}`" />
+              </div>
             </div>
           </li>
         </ul>
@@ -189,6 +202,13 @@ export default {
   padding-top: 15px;
 }
 
+.picture {
+  max-width: 60px; 
+  max-height: 60px;
+  border-radius: 8px;
+  border: 1px solid #000;
+}
+
 /*
  * Styles for the deck of cards
  */
@@ -216,6 +236,7 @@ export default {
   justify-content: center;
   align-items: center;
   box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+  position: relative;
 }
 
 .deck .card:hover {
