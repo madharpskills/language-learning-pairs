@@ -31,7 +31,7 @@ export default {
             words: [],
             cards: [],
             flippedCards: [],
-            gameFinished: true
+            gameFinished: false
         }
     },
     computed: {
@@ -98,8 +98,8 @@ export default {
                     setTimeout(() => {
                         this.flippedCards.forEach(card => card.unmatch = false)
                         this.flippedCards = []
-                    }, 800)
-                }, (800))
+                    }, 500)
+                }, 600)
             }
         }
     }
@@ -171,7 +171,6 @@ export default {
   height: 8rem;
   width: 10rem;
   margin: 5px 8px;
-  /* background: #ffffff;; */
   color: transparent;
   border-radius: 5px;
   cursor: pointer;
@@ -186,13 +185,9 @@ export default {
   color: transparent
 }
 
-.deck .card.flipped:hover {
-  color: #35495e
-}
-
 .deck .card.flipped {
   transform: rotateY(0);
-  background: #02b3e4;
+  background: #44428d;
   cursor: default;
   color: #fff;
   animation-name: flipInY;
@@ -201,14 +196,9 @@ export default {
   animation-duration: .75s;
 }
 
-.deck .card.show {
-  /* font-size: 33px; */
-}
-
 .deck .card.matched {
   cursor: default;
-  background: #20b627;
-  /* font-size: 33px; */
+  background: #aeaed4;
   animation-name: rubberBand;
   -webkit-backface-visibility: visible !important;
   backface-visibility: visible !important;
@@ -220,12 +210,6 @@ export default {
   -webkit-backface-visibility: visible !important;
   backface-visibility: visible !important;
   animation-duration: .75s;
-  background: #e2043b;
-}
-
-.deck .card.disabled {
-  pointer-events: none;
-  opacity: 0.9;
 }
 
 /* animations */
