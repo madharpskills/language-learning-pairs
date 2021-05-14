@@ -5,10 +5,9 @@
       <h1 class="title">
         Language Learning Pairs
       </h1>
-      <div>{{ gameOptions }}</div>
       <ul class="deck" id="card-deck">
-        <li v-for="card in cards" @click="card.isFlipped = !card.isFlipped">
-          <div class="deck card" :class="{ 'flipped': card.isFlipped }">
+        <li v-for="card in cards" @click="flipCard(card)">
+          <div class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
             {{card.english}}
           </div>
         </li>
@@ -28,7 +27,8 @@ import Vue from "vue"
 export default {
     data () {
         return {
-            cards: []
+            cards: [],
+            flippedCards: []
         }
     },
     computed: {
@@ -47,13 +47,44 @@ export default {
         
         this.cards.forEach((card) => {
             Vue.set(card, 'isFlipped', false)
+            Vue.set(card, 'isMatched', false)
+            Vue.set(card, 'unmatch', false)
         })
 
         this.cards = _.shuffle(this.cards.concat(_.cloneDeep(this.cards)))
     },
     methods: {
         flipCard(card) {
-            !card.isFlipped
+            if(card.isMatched || card.isFlipped || this.flippedCards.length === 2){
+                return
+            }
+
+            card.isFlipped = true
+
+            if (this.flippedCards.length < 2) {
+                this.flippedCards.push(card)
+            }
+
+            if (this.flippedCards.length === 2) {
+                this.match(card)
+            }
+        },
+        match(card) {
+            if (this.flippedCards[0].id === this.flippedCards[1].id) {
+                setTimeout(() => {
+                    this.flippedCards.forEach(card => card.isMatched = true)
+                    this.flippedCards = []
+                }, 400)
+            } else {
+                setTimeout(() => {
+                    this.flippedCards.forEach(card => card.isFlipped = false)
+                    this.flippedCards.forEach(card => card.unmatch = true)
+                    setTimeout(() => {
+                        this.flippedCards.forEach(card => card.unmatch = false)
+                        this.flippedCards = []
+                    }, 800)
+                }, (800))
+            }
         }
     }
 }
@@ -158,7 +189,7 @@ export default {
   /* font-size: 33px; */
 }
 
-.deck .card.match {
+.deck .card.matched {
   cursor: default;
   background: #20b627;
   /* font-size: 33px; */
