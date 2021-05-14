@@ -7,8 +7,11 @@
       </h1>
       <ul class="deck" id="card-deck">
         <li v-for="card in cards" @click="flipCard(card)">
-          <div class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
+          <div v-if="!card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
             {{card.english}}
+          </div>
+          <div v-if="card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
+            {{card.target}}
           </div>
         </li>
       </ul>
@@ -53,7 +56,11 @@ export default {
     methods: {
         reset() {
             this.cards = []
-            this.cards = _.shuffle(this.cards.concat(_.cloneDeep(this.words), _.cloneDeep(this.words)))
+            let englishWords = _.cloneDeep(this.words)
+            englishWords.forEach(word => word.isTarget = false)
+            let targetWords = _.cloneDeep(this.words)
+            targetWords.forEach(word => word.isTarget = true)
+            this.cards = _.shuffle(this.cards.concat(englishWords, targetWords))
 
             this.cards.forEach((card) => {
                 Vue.set(card, 'isFlipped', false)

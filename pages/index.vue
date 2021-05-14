@@ -5,7 +5,6 @@
       <h1 class="title">
         Language Learning Pairs
       </h1>
-      <div>{{ gameOptions }}</div>
       <div class="menu">
         <button v-if="!gameOptions.newGame" @click="openGameMenu()" class="button--white">New Game</button>
         <div v-if="gameOptions.newGame" class="options">
