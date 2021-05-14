@@ -11,6 +11,9 @@ const mutations = {
     },
     setMode(state, mode) {
         state.mode = mode
+        if (mode === 'pictures') {
+            state.language = 'japanese'
+        }
     },
     setLanguage(state, language) {
         state.language = language
