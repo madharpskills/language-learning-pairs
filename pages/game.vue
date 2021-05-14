@@ -13,7 +13,8 @@
         </li>
       </ul>
     </div>
-    <div style="padding-top: 800px">
+    <div style="padding-top: 800px; margin 20px">
+      <button style="margin: 20px" v-if="gameFinished" class="button--white" @click="reset">Play again</button>
       <NuxtLink to="/" class="button--white">Home</NuxtLink>
     </div>
   </div>
@@ -27,8 +28,10 @@ import Vue from "vue"
 export default {
     data () {
         return {
+            words: [],
             cards: [],
-            flippedCards: []
+            flippedCards: [],
+            gameFinished: true
         }
     },
     computed: {
@@ -37,23 +40,32 @@ export default {
         }
     },
     async asyncData({ store, $axios }) {
-        let cards = await $axios.$get(`http://localhost:3000/api/words?language=${store.state.game.language}`)
-        return { cards }
+        let words = await $axios.$get(`http://localhost:3000/api/words?language=${store.state.game.language}`)
+        return { words }
     },
     created () {
-        if (this.cards.length > this.$store.state.game.size / 2) {
-            this.cards = this.cards.slice(0, this.$store.state.game.size / 2)
+        if (this.words.length > this.$store.state.game.size / 2) {
+            this.words = this.words.slice(0, this.$store.state.game.size / 2)
         }
-        
-        this.cards.forEach((card) => {
-            Vue.set(card, 'isFlipped', false)
-            Vue.set(card, 'isMatched', false)
-            Vue.set(card, 'unmatch', false)
-        })
 
-        this.cards = _.shuffle(this.cards.concat(_.cloneDeep(this.cards)))
+        this.reset()
     },
     methods: {
+        reset() {
+            this.cards = []
+            this.cards = _.shuffle(this.cards.concat(_.cloneDeep(this.words), _.cloneDeep(this.words)))
+
+            this.cards.forEach((card) => {
+                Vue.set(card, 'isFlipped', false)
+                Vue.set(card, 'isMatched', false)
+                Vue.set(card, 'unmatch', false)
+            })
+
+            setTimeout(() => {  
+                this.gameFinished = false
+                this.flippedCards = []
+            }, 600)
+        },
         flipCard(card) {
             if(card.isMatched || card.isFlipped || this.flippedCards.length === 2){
                 return
@@ -66,14 +78,18 @@ export default {
             }
 
             if (this.flippedCards.length === 2) {
-                this.match(card)
+                this.match()
             }
         },
-        match(card) {
+        match() {
             if (this.flippedCards[0].id === this.flippedCards[1].id) {
                 setTimeout(() => {
                     this.flippedCards.forEach(card => card.isMatched = true)
                     this.flippedCards = []
+
+                    if(this.cards.every(card => card.isMatched === true)){
+                        this.gameFinished = true
+                    }
                 }, 400)
             } else {
                 setTimeout(() => {
