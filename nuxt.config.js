@@ -44,7 +44,7 @@ module.exports = {
 
 	// Axios module configuration: https://go.nuxtjs.dev/config-axios
 	axios: {
-        baseUrl: '/api/'
+        baseUrl: '/'
     },
 
 	// Build Configuration: https://go.nuxtjs.dev/config-build
