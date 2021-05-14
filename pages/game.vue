@@ -23,7 +23,7 @@
         <ul class="deck" id="card-deck">
           <li v-for="card in cards" @click="flipCard(card)" v-bind:key="card">
             <div v-if="!card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
-              <div v-if="card.isFlipped" style="position: relative;">
+              <div style="position: relative;" :class="{ 'hide': !card.isFlipped }">
                 <img class="picture" :src="`${card.pictureFilepath}`" />
               </div>
               <div style="position: absolute; bottom: 0; padding: 10px">
@@ -31,7 +31,7 @@
               </div>
             </div>
             <div v-if="card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
-              <div v-if="card.isFlipped" style="position: relative;">
+              <div style="position: relative;" :class="{ 'hide': !card.isFlipped }">
                 <img class="picture" :src="`${card.pictureFilepath}`" />
               </div>
               <div style="position: absolute; bottom: 0; padding: 10px">
@@ -46,12 +46,12 @@
         <ul class="deck" id="card-deck">
           <li v-for="card in cards" @click="flipCard(card)" v-bind:key="card">
             <div v-if="!card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
-              <div v-if="card.isFlipped">
+              <div :class="{ 'hide': !card.isFlipped }">
                 <img class="picture" :src="`${card.pictureFilepath}`" />
               </div>
             </div>
             <div v-if="card.isTarget" class="deck card" :class="{ 'flipped': card.isFlipped, 'matched': card.isMatched, 'unmatched': card.unmatch }">
-              <div v-if="card.isFlipped">
+              <div :class="{ 'hide': !card.isFlipped }">
                 <img class="picture" :src="`${card.pictureFilepath}`" />
               </div>
             </div>
@@ -207,6 +207,10 @@ export default {
   max-height: 60px;
   border-radius: 8px;
   border: 1px solid #000;
+}
+
+.hide {
+  display: none;
 }
 
 /*
