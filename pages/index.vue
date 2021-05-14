@@ -28,9 +28,10 @@
           <button @click="setSize('20')" :class="{ 'button--white--clicked' : gameOptions.size == '20', 'button--white' : gameOptions.size != '20' }">20</button>
           </div>
           <div style="padding: 25px">
-            <NuxtLink v-if="gameOptions.size == '12' && gameOptions.mode != null && gameOptions.language != null" to="game/12" @click="startGame()" class="button--white">Start Game</NuxtLink>
+            <!-- <NuxtLink v-if="gameOptions.size == '12' && gameOptions.mode != null && gameOptions.language != null" to="game/12" @click="startGame()" class="button--white">Start Game</NuxtLink>
             <NuxtLink v-if="gameOptions.size == '16' && gameOptions.mode != null && gameOptions.language != null" to="game/16" @click="startGame()" class="button--white">Start Game</NuxtLink>
-            <NuxtLink v-if="gameOptions.size == '20' && gameOptions.mode != null && gameOptions.language != null" to="game/20" @click="startGame()" class="button--white">Start Game</NuxtLink>
+            <NuxtLink v-if="gameOptions.size == '20' && gameOptions.mode != null && gameOptions.language != null" to="game/20" @click="startGame()" class="button--white">Start Game</NuxtLink> -->
+            <NuxtLink v-if="gameOptions.size != null && gameOptions.mode != null && gameOptions.language != null" to="game" @click="startGame()" class="button--white">Start Game</NuxtLink>
           </div>
         </div>
       </div>
