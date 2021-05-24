@@ -1,6 +1,7 @@
 module.exports = {
 	// Global page headers: https://go.nuxtjs.dev/config-head
     target: 'static',
+    ssr: false,
 	head: {
 		title: 'Language Learning Pairs',
 		htmlAttrs: {
